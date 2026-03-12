@@ -26,6 +26,3 @@ def extract_full_feature_vector(y, sr):
     combined = np.concatenate([mfcc_feat, np.array(list(add_feats.values()))])
     return combined, list(add_feats.keys())
 
-y, sr = librosa.load("Data/genres_original/jazz/jazz.00001.wav", sr=22050)
-mfcc_feat = extract_mfcc(y, sr)
-print(mfcc_feat.shape)  # (80,)

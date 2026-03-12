@@ -7,7 +7,7 @@ df = pd.read_csv("Data/extracted_features.csv")
 print(f"✅ Loaded dataset: {df.shape[0]} samples, {df.shape[1]} features")
 
 # Inspect first few rows
-display(df.head())
+print(df.head())
 
 # Check for missing values
 print(df.isnull().sum().sum(), "missing values in total")

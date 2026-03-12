@@ -15,8 +15,8 @@ def verify_audio_files(data_dir):
                     y, sr = librosa.load(os.path.join(genre_path, file))
                     count += 1
                 except Exception as e:
-                    print(f"❌ Error reading {file}: {e}")
-        print(f"✅ {genre}: {count} valid audio files")
+                    print(f"[ERROR] Error reading {file}: {e}")
+        print(f"[OK] {genre}: {count} valid audio files")
 
 if __name__ == "__main__":
     verify_audio_files(DATA_DIR)

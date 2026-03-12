@@ -28,7 +28,7 @@ def build_feature_dataset(output_csv="Data/features_extracted.csv"):
               [f"mfcc_std_{i}" for i in range(40)] + extra_keys + ["label"]
     df = pd.DataFrame(rows, columns=columns)
     df.to_csv(output_csv, index=False)
-    print(f"✅ Features saved to {output_csv}")
+    print(f"[OK] Features saved to {output_csv}")
 
-from build_feature_dataset import build_feature_dataset
-build_feature_dataset()
+if __name__ == "__main__":
+    build_feature_dataset()
