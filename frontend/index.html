@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Genre Classifier — AI-Powered Audio Analysis</title>
+    <meta name="description" content="Upload a music file and our AI instantly classifies its genre. Powered by machine learning.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Animated background blobs -->
+    <div class="bg-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <main>
+        <!-- Header -->
+        <header id="hero">
+            <div class="logo">
+                <span class="logo-icon">🎵</span>
+                <span class="logo-text">GenreAI</span>
+            </div>
+            <h1>Music Genre <span class="gradient-text">Classifier</span></h1>
+            <p class="subtitle">Upload a track and let our AI identify its genre in seconds</p>
+        </header>
+
+        <!-- Upload Section -->
+        <section id="upload-section">
+            <div class="upload-card glass-card" id="upload-card">
+                <div class="drop-zone" id="drop-zone">
+                    <div class="drop-zone-content" id="drop-zone-content">
+                        <div class="upload-icon-wrap">
+                            <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                <polyline points="17 8 12 3 7 8"/>
+                                <line x1="12" y1="3" x2="12" y2="15"/>
+                            </svg>
+                        </div>
+                        <p class="drop-text">Drag & drop your audio file here</p>
+                        <p class="drop-subtext">or click to browse</p>
+                        <div class="supported-formats">
+                            <span class="format-badge">.WAV</span>
+                            <span class="format-badge">.MP3</span>
+                            <span class="format-badge">.OGG</span>
+                            <span class="format-badge">.FLAC</span>
+                        </div>
+                    </div>
+                    <input type="file" id="file-input" accept=".wav,.mp3,.ogg,.flac" hidden>
+                </div>
+
+                <!-- File info (shown after selection) -->
+                <div class="file-info hidden" id="file-info">
+                    <div class="file-icon">🎶</div>
+                    <div class="file-details">
+                        <p class="file-name" id="file-name">filename.wav</p>
+                        <p class="file-size" id="file-size">2.4 MB</p>
+                    </div>
+                    <button class="btn-remove" id="btn-remove" title="Remove file">&times;</button>
+                </div>
+
+                <!-- Audio player -->
+                <div class="audio-player hidden" id="audio-player">
+                    <audio id="audio-element" controls></audio>
+                </div>
+
+                <!-- Predict button -->
+                <button class="btn-predict hidden" id="btn-predict">
+                    <span class="btn-text">Classify Genre</span>
+                    <span class="btn-loader hidden" id="btn-loader">
+                        <span class="spinner"></span>
+                        Analyzing...
+                    </span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Results Section -->
+        <section id="results-section" class="hidden">
+            <div class="results-card glass-card">
+                <h2 class="results-title">Analysis Complete</h2>
+
+                <!-- Primary result -->
+                <div class="primary-result" id="primary-result">
+                    <div class="genre-emoji" id="genre-emoji">🎸</div>
+                    <h3 class="genre-name" id="genre-name">Rock</h3>
+                    <p class="genre-confidence" id="genre-confidence">92% confidence</p>
+                </div>
+
+                <!-- Confidence bars -->
+                <div class="confidence-bars" id="confidence-bars">
+                    <!-- Filled dynamically -->
+                </div>
+
+                <!-- Retry -->
+                <button class="btn-retry" id="btn-retry">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+                        <polyline points="23 4 23 10 17 10"/>
+                        <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
+                    </svg>
+                    Try Another Track
+                </button>
+            </div>
+        </section>
+
+        <!-- Error display -->
+        <div class="error-toast hidden" id="error-toast">
+            <span class="error-icon">⚠️</span>
+            <span class="error-message" id="error-message">Something went wrong.</span>
+        </div>
+    </main>
+
+    <footer>
+        <p>Built with <span class="heart">♥</span> using FastAPI &amp; scikit-learn</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

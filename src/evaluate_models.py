@@ -1,7 +1,9 @@
 import os
 import joblib
 import pandas as pd
+import numpy as np
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
+import tensorflow as tf
 
 print("Loading test data and models...")
 DATA_SPLIT_PATH = "Data/train_test_split.pkl"
@@ -19,7 +21,7 @@ except Exception as e:
     print(f"Error loading data: {e}")
     exit(1)
 
-model_files = [f for f in os.listdir(MODELS_DIR) if f.endswith('_model.pkl')]
+model_files = [f for f in os.listdir(MODELS_DIR) if f.endswith('_model.pkl') or f.endswith('.h5')]
 if not model_files:
     print("No trained models found in 'models/' directory.")
     exit(1)
@@ -27,13 +29,19 @@ if not model_files:
 class_names = label_encoder.classes_
 
 for model_file in model_files:
-    model_name = model_file.replace('_model.pkl', '').upper()
+    model_name = model_file.replace('_model.pkl', '').replace('.h5', '').upper()
     print(f"\n--- Evaluating {model_name} ---")
     
     model_path = os.path.join(MODELS_DIR, model_file)
-    model = joblib.load(model_path)
-    
-    y_pred = model.predict(X_test)
+    if model_file.endswith('.h5'):
+        model = tf.keras.models.load_model(model_path)
+        # Reshape explicitly for CNNs
+        X_test_cnn = np.expand_dims(X_test, axis=2)
+        y_pred_probs = model.predict(X_test_cnn)
+        y_pred = np.argmax(y_pred_probs, axis=1)
+    else:
+        model = joblib.load(model_path)
+        y_pred = model.predict(X_test)
     
     acc = accuracy_score(y_test, y_pred)
     print(f"Accuracy: {acc:.4f}")

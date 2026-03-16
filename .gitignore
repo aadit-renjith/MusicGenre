@@ -41,8 +41,8 @@ Data/
 *.tar.gz
 *.rar
 
-# Models and Outputs
-models/
+# Models and Outputs — keep .pkl (needed for deploy), exclude heavy .h5
+models/*.h5
 outputs/
 
 # Temporary and generated files
