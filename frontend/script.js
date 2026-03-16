@@ -7,42 +7,42 @@
 // For production, replace with your Render.com URL
 const API_URL = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
     ? "http://localhost:8000"
-    : "https://music-genre-api.onrender.com";  // <-- Replace with your Render URL after deployment
+    : "https://music-genre-api-u7i7.onrender.com";  // <-- Replace with your Render URL after deployment
 
 // ── Genre emoji / color map ────────────────────
 const GENRE_META = {
-    blues:     { emoji: "🎷", hue: 220 },
-    classical: { emoji: "🎻", hue: 45  },
-    country:   { emoji: "🤠", hue: 30  },
-    disco:     { emoji: "🪩", hue: 300 },
-    hiphop:    { emoji: "🎤", hue: 350 },
-    jazz:      { emoji: "🎺", hue: 40  },
-    metal:     { emoji: "🤘", hue: 0   },
-    pop:       { emoji: "🎧", hue: 280 },
-    reggae:    { emoji: "🌴", hue: 120 },
-    rock:      { emoji: "🎸", hue: 15  },
+    blues: { emoji: "🎷", hue: 220 },
+    classical: { emoji: "🎻", hue: 45 },
+    country: { emoji: "🤠", hue: 30 },
+    disco: { emoji: "🪩", hue: 300 },
+    hiphop: { emoji: "🎤", hue: 350 },
+    jazz: { emoji: "🎺", hue: 40 },
+    metal: { emoji: "🤘", hue: 0 },
+    pop: { emoji: "🎧", hue: 280 },
+    reggae: { emoji: "🌴", hue: 120 },
+    rock: { emoji: "🎸", hue: 15 },
 };
 
 // ── DOM Elements ───────────────────────────────
-const dropZone       = document.getElementById("drop-zone");
-const fileInput      = document.getElementById("file-input");
-const fileInfo       = document.getElementById("file-info");
-const fileName       = document.getElementById("file-name");
-const fileSize       = document.getElementById("file-size");
-const btnRemove      = document.getElementById("btn-remove");
-const audioPlayer    = document.getElementById("audio-player");
-const audioElement   = document.getElementById("audio-element");
-const btnPredict     = document.getElementById("btn-predict");
-const btnText        = document.querySelector(".btn-text");
-const btnLoader      = document.getElementById("btn-loader");
+const dropZone = document.getElementById("drop-zone");
+const fileInput = document.getElementById("file-input");
+const fileInfo = document.getElementById("file-info");
+const fileName = document.getElementById("file-name");
+const fileSize = document.getElementById("file-size");
+const btnRemove = document.getElementById("btn-remove");
+const audioPlayer = document.getElementById("audio-player");
+const audioElement = document.getElementById("audio-element");
+const btnPredict = document.getElementById("btn-predict");
+const btnText = document.querySelector(".btn-text");
+const btnLoader = document.getElementById("btn-loader");
 const resultsSection = document.getElementById("results-section");
-const genreEmoji     = document.getElementById("genre-emoji");
-const genreName      = document.getElementById("genre-name");
+const genreEmoji = document.getElementById("genre-emoji");
+const genreName = document.getElementById("genre-name");
 const genreConfidence = document.getElementById("genre-confidence");
 const confidenceBars = document.getElementById("confidence-bars");
-const btnRetry       = document.getElementById("btn-retry");
-const errorToast     = document.getElementById("error-toast");
-const errorMessage   = document.getElementById("error-message");
+const btnRetry = document.getElementById("btn-retry");
+const errorToast = document.getElementById("error-toast");
+const errorMessage = document.getElementById("error-message");
 const dropZoneContent = document.getElementById("drop-zone-content");
 
 let selectedFile = null;
